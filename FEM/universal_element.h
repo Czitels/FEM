@@ -11,6 +11,3 @@ struct Universal_element //singleton?
 	DbMtrx DerivKsi;
 	DbMtrx DerivEta;
 };
-//TODO: stworzyc macierz uniwersalna i podstawiæ wzory, które oblicz¹ elementy.
-//Mo¿e klasa element uniwersalny bêdzie klas¹ abstrakcyjn¹ z której bêd¹ dziedziczyæ inne?
-//Macierz uniwersalna ma byæ klas¹ czy ki uj xD a mo¿e to vector vectorów?

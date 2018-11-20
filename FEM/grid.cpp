@@ -74,7 +74,7 @@ void Grid::CalculateH()
 	std::array<double, 4> cordsy;
 	for (size_t i = 0; i < 4; ++i) // taki dziwny mechanizm, poniewa¿ trzeba jakoœ dotrzec po ID trzymanych w elemencie do nodów
 	{
-		int tmp = elements[0].ID[i]-1; // -1 bo numerujemy od 0 w nodes
+		unsigned int tmp = elements[0].getID(i)-1; // -1 bo numerujemy od 0 w nodes
 		cordsx[i] = nodes[tmp].getX();
 		cordsy[i] = nodes[tmp].getY();
 

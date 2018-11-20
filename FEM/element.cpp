@@ -52,3 +52,8 @@ void Element::calculH(std::array<double,4> &cordsx, std::array<double,4> &cordsy
 
 	}
 }
+
+unsigned int Element::getID(unsigned int id)
+{
+	return this->ID[id];
+}
