@@ -1,7 +1,7 @@
 #pragma once
 #include <array>
 #include <vector>
-struct Universal_element //singleton?
+struct Universal_element 
 {
 	Universal_element();
 	using DbMtrx = std::vector<std::vector<double>>;
