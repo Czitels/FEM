@@ -80,5 +80,4 @@ void Grid::CalculateH()
 
 	}
 	this->elements[0].calculH(cordsx,cordsy);
-	std::cout << "koniec";
 }
