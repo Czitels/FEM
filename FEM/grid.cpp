@@ -72,9 +72,9 @@ void Grid::CalculateH()
 {
 	std::array<double, 4> cordsx;
 	std::array<double, 4> cordsy;
-	for (size_t i = 0; i < 4; ++i) // taki dziwny mechanizm, poniewa¿ trzeba jakoœ dotrzec po ID trzymanych w elemencie do nodów
+	for (size_t i = 0; i < 4; ++i) // we need to get cords (x,y) for our element
 	{
-		unsigned int tmp = elements[0].getID(i)-1; // -1 bo numerujemy od 0 w nodes
+		unsigned int tmp = elements[0].getID(i)-1; // -1 becaouse ID-s are 1-4 no 0-3 :(
 		cordsx[i] = nodes[tmp].getX();
 		cordsy[i] = nodes[tmp].getY();
 
