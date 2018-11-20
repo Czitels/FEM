@@ -41,12 +41,13 @@ void Grid::setGrid()
 		{
 			if (i%nH != 0)
 			{
-				Element myelement;
-				myelement.ID[0] = i;
-				myelement.ID[1] = i + 1;
-				myelement.ID[2] = i + nH;
-				myelement.ID[3] = i + nH + 1;
-				elements.push_back(myelement);
+				std::array<unsigned int, 4> IDs;
+				IDs[0] = i;
+				IDs[1] = i + 1;
+				IDs[2] = i + nH;
+				IDs[3] = i + nH + 1;
+				Element myNewElement(IDs);
+				elements.push_back(myNewElement);
 			}
 		}
 	}
@@ -61,7 +62,7 @@ void Grid::printGrid()
 	std::cout << "Elements:" << "\n";
 	for (auto&x:elements)
 	{
-		for (auto&y:x.ID)
+		for (auto&y:x.getArray())
 		{
 			std::cout << y << " ";
 		}

@@ -3,14 +3,13 @@
 #include "universal_element.h"
 #include "grid.h"
 
-using DbMtrx = std::vector<std::vector<double>>;
 std::ostream& operator<<(std::ostream&, const Node&);
 int main()
 {
 	Grid mygrid;
 	mygrid.setGrid();
-	//mygrid.printGrid();
-	mygrid.CalculateH();
+	mygrid.printGrid();
+	//mygrid.CalculateH();
 
 	system("pause");
 	return 0;

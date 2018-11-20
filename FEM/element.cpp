@@ -2,6 +2,8 @@
 #include "element.h"
 #include "universal_element.h"
 
+Element::Element(std::array<unsigned int, 4> IDs) :ID(IDs) {}
+
 void Element::calculH(std::array<double,4> &cordsx, std::array<double,4> &cordsy)
 {
 	Universal_element univ;
@@ -56,4 +58,8 @@ void Element::calculH(std::array<double,4> &cordsx, std::array<double,4> &cordsy
 unsigned int Element::getID(unsigned int id)
 {
 	return this->ID[id];
+}
+std::array<unsigned int, 4>& Element::getArray()
+{
+	return this->ID;
 }
