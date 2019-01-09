@@ -1,10 +1,13 @@
 #include "universal_element.h"
 #include <iostream>
+#include <iomanip>
 
 Universal_element::Universal_element()
 {
 	DerivEta.resize(4);
 	DerivKsi.resize(4);
+	std::array<const double, 4> ksi = { -0.57735, 0.57735, 0.57735, -0.57735 };
+	std::array<const double, 4> eta = { -0.57735, -0.57735, 0.57735, 0.57735 };
 	for (size_t i = 0; i < 4; i++)
 	{
 		std::vector<double> row;

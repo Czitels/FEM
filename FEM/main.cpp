@@ -8,9 +8,11 @@ int main()
 {
 	Grid mygrid;
 	mygrid.setGrid();
-	mygrid.printGrid();
-	//mygrid.CalculateH();
-
+	mygrid.CalculateH();
+	mygrid.setGlobalMatrixH();
+	mygrid.setGlobalMatrixC();
+	mygrid.setGlobalMatrixHC();
+	mygrid.CalculateTemp();
 	system("pause");
 	return 0;
 }

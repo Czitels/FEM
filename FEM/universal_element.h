@@ -1,12 +1,16 @@
 #pragma once
 #include <array>
 #include <vector>
-struct Universal_element 
+struct Universal_element
 {
 	Universal_element();
 	using DbMtrx = std::vector<std::vector<double>>;
-	std::array<const double, 4> ksi = { -0.5774, 0.5773, 0.5773, -0.5774 };
-	std::array<const double, 4> eta = { -0.5774, -0.5774, 0.5773, 0.5773 };
+
+	const double ro = 7800;
+	const double c = 700;
+	const double k = 25;
+	const double alfa = 300;
+	const double tinf = 1200;
 	DbMtrx Ni; // shape functions
 	DbMtrx DerivKsi;
 	DbMtrx DerivEta;

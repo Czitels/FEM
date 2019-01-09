@@ -4,17 +4,25 @@
 #include <vector>
 class Grid
 {
+	using DbMtrx = std::vector<std::vector<double>>;
+
 public:
 	Grid();
 	~Grid();
 	void setGrid();
+	void setGlobalMatrixH();
+	void setGlobalMatrixC();
+	void setGlobalMatrixHC();
+	void setGlobalP();
+	void CalculateTemp();
 	void CalculateH();
 	void printGrid();
+	void JacobiMethod(double** Matrix, const size_t);
 
 private:
-	using DbMtrx = std::vector<std::vector<double>>;
 	float H;
 	float L;
+	int Tau = 50;
 	size_t nH;
 	size_t nL;
 	float t0;
@@ -22,6 +30,7 @@ private:
 	size_t nE;
 	std::vector<Node> nodes;
 	std::vector<Element> elements;
-	DbMtrx DerivKsi;
-	DbMtrx DerivEta;
+	std::vector<double> GlobalP;
+	DbMtrx GlobalH;
+	DbMtrx GlobalC;
 };
