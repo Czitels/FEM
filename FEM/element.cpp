@@ -52,22 +52,7 @@ void Element::calculH(std::array<double,4> &cordsx, std::array<double,4> &cordsy
 		JacMinusOne[2].push_back(-Jacobian[2][i] / detJ[i]);
 		JacMinusOne[3].push_back(Jacobian[0][i] / detJ[i]);
 	}
-	/*for (size_t i = 0; i < 4; i++)
-	{
-		univ.DerivEta[0][i] *= -1;
-		univ.DerivEta[3][i] *= -1;
-		univ.DerivKsi[0][i] *= -1;
-		univ.DerivKsi[1][i] *= -1;
-
-	}
-	for (size_t i = 0; i < 4; i++)
-	{
-		univ.DerivEta[i][0] *= -1;
-		univ.DerivEta[i][3] *= -1;
-		univ.DerivKsi[i][0] *= -1;
-		univ.DerivKsi[i][1] *= -1;
-
-	}*/
+	
 	for (size_t i = 0; i < 4; i++)
 	{
 		for (size_t j = 0; j < 4; j++)
@@ -156,16 +141,6 @@ void Element::calculH(std::array<double,4> &cordsx, std::array<double,4> &cordsy
 			H[i].push_back(FinalP1[i][j] + FinalP2[i][j] + FinalP3[i][j] + FinalP4[i][j]+bcH[i][j]); // we sum points and add boundary conditions H
 		}
 	}
-
-	/*for (auto x : H) {
-		for (auto z : x)
-		{
-			std::cout << z << "  ";
-		}
-		std::cout << std::endl;
-	}*/
-
-
 }
 void Element::calculC(std::vector<double> &detJ, Universal_element &univ)
 {
@@ -191,42 +166,6 @@ void Element::calculC(std::vector<double> &detJ, Universal_element &univ)
 			Point4[i].push_back(univ.Ni[j][3] * univ.Ni[i][3] * detJ[3] * univ.c * univ.ro);
 		}
 	}
-	/*for (auto &x : Point1)
-	{
-		for each (auto &z in x)
-		{
-			std::cout << z << "\t";
-		}
-		std::cout << '\n';
-	}
-	std::cout << '\n';
-	for (auto &x : Point2)
-	{
-		for each (auto &z in x)
-		{
-			std::cout << z << "\t";
-		}
-		std::cout << '\n';
-	}
-	std::cout << '\n';
-	for (auto &x : Point3)
-	{
-		for each (auto &z in x)
-		{
-			std::cout << z << "\t";
-		}
-		std::cout << '\n';
-	}
-	std::cout << '\n';
-	for (auto &x : Point4)
-	{
-		for each (auto &z in x)
-		{
-			std::cout << z << "\t";
-		}
-		std::cout << '\n';
-	}
-	std::cout << '\n';*/
 	for (size_t i = 0; i < 4; i++)
 	{
 		for (size_t j = 0; j < 4; j++)
@@ -234,14 +173,6 @@ void Element::calculC(std::vector<double> &detJ, Universal_element &univ)
 			C[i].push_back(Point1[i][j] + Point2[i][j] + Point3[i][j] + Point4[i][j]);
 		}
 	}
-	/*for (auto x : C) {
-		for (auto z : x)
-		{
-			std::cout << z << "  ";
-		}
-		std::cout << std::endl;
-	}
-	std::cout << std::endl;*/
 }
 void Element::calculHBC(std::array<double, 4> &cordsx, std::array<double, 4> &cordsy, Universal_element& univ)
 {
@@ -320,33 +251,13 @@ void Element::calculHBC(std::array<double, 4> &cordsx, std::array<double, 4> &co
 					pc1 = N1[j] * N1[k] * univ.alfa;
 					pc2 = N2[j] * N2[k] * univ.alfa;
 					sum[j][k] = (pc1 + pc2)*detJ;
-					bcH[j * i][k * i] += sum[j][k]; // mnozymy, zeby móc ustawiæ w rogach macierzy
+					bcH[j * i][k * i] += sum[j][k]; // multiply, beacaouse we want to set corners of matrix
 				}
 			}
 			P[i] += univ.tinf*(sum[0][0] + sum[1][0]);
 			P[0] += univ.tinf*(sum[0][1] + sum[1][1]);
 		}
 	}
-
-	/*for (auto &x : bcH)
-	{
-		for (auto &z : x)
-		{
-			std::cout << z << "   ";
-		}
-		std::cout << "\n";
-	}
-	std::cout << "\n";
-	for (auto &x : BC)
-	{
-		std::cout << x << "   ";
-	}
-
-	/*for (auto &x : P)
-	{
-		std::cout << x << "   ";
-	}
-	std::cout << "\n";*/
 }
 unsigned int Element::getID(unsigned int id)
 {
