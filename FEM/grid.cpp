@@ -75,15 +75,6 @@ void Grid::setGlobalMatrixH()
 			}
 		}
 	}
-
-	for (auto &x : GlobalH)
-	{
-		for (auto &z : x)
-		{
-			std::cout << z << "  ";
-		}
-		std::cout << "\n";
-	}
 }
 void Grid::setGlobalMatrixC()
 {
@@ -109,14 +100,6 @@ void Grid::setGlobalMatrixC()
 			}
 		}
 	}
-	/*for (auto &x : GlobalC)
-	{
-		for (auto &z : x)
-		{
-			std::cout << z << "  ";
-		}
-		std::cout << "\n";
-	}*/
 	for (size_t i = 0; i < GlobalC.size(); i++)
 	{
 		for (size_t j = 0; j < GlobalC[0].size(); j++)
@@ -124,15 +107,6 @@ void Grid::setGlobalMatrixC()
 			GlobalC[i][j] /= Tau;
 		}
 	}
-
-	/*for (auto &x : GlobalC)
-	{
-		for (auto &z : x)
-		{
-			std::cout << z << "  ";
-		}
-		std::cout << "\n";
-	}*/
 }
 void Grid::setGlobalMatrixHC()
 {
@@ -143,15 +117,6 @@ void Grid::setGlobalMatrixHC()
 			GlobalH[i][j] += GlobalC[i][j];
 		}
 	}
-	
-	/*for (auto &x:GlobalH)
-	{
-		for (auto &z : x)
-		{
-			std::cout << z << "   ";
-		}
-		std::cout << "\n";
-	}*/
 }
 void Grid::setGlobalP()
 {
@@ -184,28 +149,11 @@ void Grid::setGlobalP()
 				GlobalP[j] += localP[i];
 			}
 		}
-	}
-	for (auto &z : GlobalP)
-	{
-		std::cout << z << "   ";
-	}
-	std::cout << "\n";
-	
+	}	
 	for (size_t i = 0; i < GlobalP.size(); i++)
 	{
 		GlobalP[i] += sums[i];
 	}
-	/*
-	for (auto &z : sums)
-	{
-		std::cout << z << "   ";
-	}
-	std::cout << "\n";*/
-	for (auto &z : GlobalP)
-	{
-		std::cout << z << "   ";
-	}
-	std::cout << "\n";
 }
 void Grid::printGrid()
 {
@@ -226,9 +174,7 @@ void Grid::printGrid()
 }
 void Grid::CalculateTemp()
 {
-	/*setGlobalMatrixH();
-	setGlobalMatrixC();
-	setGlobalMatrixHC();*/
+	
 	for (size_t i = 0; i < 10; i++)
 	{
 		setGlobalP();
@@ -253,24 +199,7 @@ void Grid::CalculateTemp()
 				}
 			}
 		}
-		/*for (size_t i = 0; i < length; i++)
-		{
-		for (size_t j = 0; j < length+1; j++)
-		{
-		std::cout<<matrix[i][j]<<"  ";
-		}
-		std::cout << "\n";
-		}*/
 		JacobiMethod(matrix, length);
-		//Tau += 50;
-		/*for (size_t i = 0; i < GlobalH.size(); i++)
-		{
-			for (size_t j = 0; j < GlobalH[0].size(); j++)
-			{
-				GlobalC[i][j] = 0.0;
-			}
-		}
-		setGlobalMatrixC();*/
 	}
 }
 void Grid::CalculateH()
@@ -311,15 +240,14 @@ void Grid::CalculateH()
 void Grid::JacobiMethod(double** matrix,const size_t length)
 {
 	double *N = new double[length];
-	double *x = new double[length](); // automatycznie wypelniamy nullami
+	double *x = new double[length](); 
 	for (size_t i = 0; i < length; i++)
 	{
 		N[i] = pow(matrix[i][i], -1);
-		matrix[i][i] = 0; // wypelniam srodkow¹ diagonale zerami, 
-						  //poniewa¿ dziêki temu zyskujê od razu "L+D" bez koniecznoœci kodzenia dodawania
+		matrix[i][i] = 0; 
 		for (size_t j = 0; j < length; j++)
 		{
-			matrix[i][j] = -1.0*(N[i] * matrix[i][j]); // Tworze przy okazji macierz M zastêpuj¹c macierz matrix
+			matrix[i][j] = -1.0*(N[i] * matrix[i][j]);
 		}
 	}
 	for (size_t k = 0; k < 15; k++)
@@ -330,9 +258,9 @@ void Grid::JacobiMethod(double** matrix,const size_t length)
 			double Mx = 0;
 			for (size_t j = 0; j < length; j++)
 			{
-				Mx += matrix[i][j] * x[j]; // potrzebuje obliczyæ M*x
+				Mx += matrix[i][j] * x[j];
 			}
-			tmpX[i] = Mx + N[i] * matrix[i][length];// tutaj dodaje wyliczone wczeœniej M*x do D*b
+			tmpX[i] = Mx + N[i] * matrix[i][length];
 			Mx = 0;
 		}
 		for (size_t i = 0; i < length; i++)
